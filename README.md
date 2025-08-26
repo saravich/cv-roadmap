@@ -1,10 +1,10 @@
-# CV Toolkit — Production-ready Computer Vision & Image Processing
+# IP Toolkit: Roadmap for Computer Vision & Image Processing
 
-A clean, well-tested reference toolkit for classic computer vision and image processing tasks.
-Designed as a **portfolio-ready** repo: package + CLI + docs + tests + CI + Docker + devcontainer.
+A clean, well-tested reference toolkit for image processing and classic computer vision asks.
+
 
 ## Highlights
-- Python package (`cv_toolkit`) with typed, unit-tested modules
+- Python package (`iptk`) with typed, unit-tested modules
 - Typer-based CLI for quick demos and batch jobs
 - Classic CV algorithms: filtering, edges, features/matching, homography, calibration, optical flow,
   segmentation, tracking
@@ -20,10 +20,10 @@ python -m venv .venv && source .venv/bin/activate  # Windows: .venv\Scripts\acti
 pip install -e ".[dev]"
 
 # 2) Run the CLI (see available commands)
-cvtk --help
+iptk --help
 
 # Example: edges
-cvtk edges path/to/image.jpg --out out_edges.png
+iptk edges path/to/image.jpg --out out_edges.png
 
 # 3) Run tests & linters
 pytest -q
@@ -33,8 +33,8 @@ mypy src
 
 ## Folder layout
 ```
-cv-toolkit/
-├─ src/cv_toolkit/          # Python package
+ip-toolkit/
+├─ src/iptk/                # Python package
 ├─ tests/                   # Unit tests
 ├─ docs/                    # MkDocs documentation
 ├─ cpp/                     # Minimal C++ sample (OpenCV)

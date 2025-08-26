@@ -22,7 +22,7 @@ dependencies = [
 Homepage = "https://github.com/saravich/cv-roadmap"
 
 [project.scripts]
-cvtk = "cv_toolkit.cli:app"
+iptk = "iptk.cli:app"
 
 [project.optional-dependencies]
 dev = [
@@ -35,12 +35,17 @@ dev = [
   "mkdocs-material>=9.5",
 ]
 
+[tool.hatch.build.targets.wheel]
+packages = ["src/iptk"]
+
 [tool.black]
 line-length = 100
 target-version = ["py311"]
 
 [tool.ruff]
 line-length = 100
+
+[tool.ruff.lint]
 select = ["E","F","I","UP","B","BLE","C4","SIM","I"]
 ignore = ["E501"]
 
@@ -49,7 +54,8 @@ strict = true
 warn_unused_ignores = true
 warn_redundant_casts = true
 exclude = ["docs/"]
+disable_error_code = ["misc"]
 
 [tool.pytest.ini_options]
-addopts = "-q --cov=cv_toolkit --cov-report=term-missing"
+addopts = "-q --cov=iptk --cov-report=term-missing"
 pythonpath = ["src"]

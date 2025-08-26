@@ -1,8 +1,12 @@
 from __future__ import annotations
+
 import cv2 as cv
 import numpy as np
 
-def lk_flow(prev: np.ndarray, curr: np.ndarray, max_corners: int = 200):
+
+def lk_flow(
+    prev: np.ndarray, curr: np.ndarray, max_corners: int = 200
+) -> tuple[np.ndarray, np.ndarray, np.ndarray, np.ndarray] | None:
     p0 = cv.goodFeaturesToTrack(prev, maxCorners=max_corners, qualityLevel=0.01, minDistance=7)
     if p0 is None:
         return None
