@@ -6,11 +6,11 @@ import cv2 as cv
 def create_tracker(name: str = "KCF") -> cv.Tracker:
     name = name.upper()
     if name == "KCF":
-        return cv.TrackerKCF_create()
+        return cv.TrackerKCF.create()
     if name == "CSRT":
-        return cv.TrackerCSRT_create()
+        return cv.TrackerCSRT.create()
     if name == "MIL":
-        return cv.TrackerMIL_create()
+        return cv.TrackerMIL.create()
     raise ValueError(f"Unknown tracker: {name}")
 
 

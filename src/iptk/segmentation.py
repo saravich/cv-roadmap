@@ -4,7 +4,9 @@ import cv2 as cv
 import numpy as np
 
 
-def watershed_segmentation(img_bgr: np.ndarray) -> np.ndarray:
+def watershed_segmentation(
+    img_bgr: np.ndarray[np.uint8, np.dtype[np.uint8]],
+) -> np.ndarray[np.uint8, np.dtype[np.uint8]]:
     gray = cv.cvtColor(img_bgr, cv.COLOR_BGR2GRAY)
     _, thr = cv.threshold(gray, 0, 255, cv.THRESH_BINARY + cv.THRESH_OTSU)
     kernel = np.ones((3, 3), np.uint8)

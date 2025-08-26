@@ -4,13 +4,19 @@ import cv2 as cv
 import numpy as np
 
 
-def orb_keypoints(img: np.ndarray, nfeatures: int = 1000) -> tuple[list[cv.KeyPoint], np.ndarray]:
+def orb_keypoints(
+    img: np.ndarray[np.uint8, np.dtype[np.uint8]], nfeatures: int = 1000
+) -> tuple[list[cv.KeyPoint], np.ndarray[np.uint8, np.dtype[np.uint8]]]:
     orb = cv.ORB_create(nfeatures=nfeatures)
     kps, desc = orb.detectAndCompute(img, None)
     return kps, desc
 
 
-def match_orb(desc1: np.ndarray, desc2: np.ndarray, max_ratio: float = 0.75) -> list[cv.DMatch]:
+def match_orb(
+    desc1: np.ndarray[np.uint8, np.dtype[np.uint8]],
+    desc2: np.ndarray[np.uint8, np.dtype[np.uint8]],
+    max_ratio: float = 0.75,
+) -> list[cv.DMatch]:
     bf = cv.BFMatcher(cv.NORM_HAMMING, crossCheck=False)
     matches = bf.knnMatch(desc1, desc2, k=2)
     good = [m for m, n in matches if m.distance < max_ratio * n.distance]
@@ -18,12 +24,12 @@ def match_orb(desc1: np.ndarray, desc2: np.ndarray, max_ratio: float = 0.75) -> 
 
 
 def draw_matches(
-    img1: np.ndarray,
+    img1: np.ndarray[np.uint8, np.dtype[np.uint8]],
     kps1: list[cv.KeyPoint],
-    img2: np.ndarray,
+    img2: np.ndarray[np.uint8, np.dtype[np.uint8]],
     kps2: list[cv.KeyPoint],
     matches: list[cv.DMatch],
-) -> np.ndarray:
+) -> np.ndarray[np.uint8, np.dtype[np.uint8]]:
     return cv.drawMatches(
         img1, kps1, img2, kps2, matches, None, flags=cv.DrawMatchesFlags_NOT_DRAW_SINGLE_POINTS
     )

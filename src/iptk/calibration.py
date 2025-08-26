@@ -15,7 +15,12 @@ def calibrate_from_dir(
     folder: str | Path,
     pattern: str = "9x6",
     square_size: float = 1.0,
-) -> dict[str, float | np.ndarray | list[np.ndarray]]:
+) -> dict[
+    str,
+    float
+    | np.ndarray[np.float64, np.dtype[np.float64]]
+    | list[np.ndarray[np.float32, np.dtype[np.float32]]],
+]:
     folder = Path(folder)
     cols, rows = _grid_from_str(pattern)
     objp = np.zeros((rows * cols, 3), np.float32)
@@ -30,8 +35,10 @@ def calibrate_from_dir(
     img_size = None
     for p in images:
         img = cv.imread(str(p), cv.IMREAD_GRAYSCALE)
+        if img is None:
+            continue
         ret, corners = cv.findChessboardCorners(img, (cols, rows))
-        if ret:
+        if ret and corners is not None:
             corners2 = cv.cornerSubPix(
                 img,
                 corners,
@@ -45,6 +52,9 @@ def calibrate_from_dir(
 
     if not objpoints:
         raise RuntimeError("No chessboard detections; check pattern and images.")
+
+    if img_size is None:
+        raise RuntimeError("No valid image size found.")
 
     ret, K, dist, rvecs, tvecs = cv.calibrateCamera(objpoints, imgpoints, img_size, None, None)
     return {"rms": float(ret), "K": K, "dist": dist, "rvecs": rvecs, "tvecs": tvecs}
