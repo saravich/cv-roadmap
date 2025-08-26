@@ -3,13 +3,13 @@ requires = ["hatchling>=1.18"]
 build-backend = "hatchling.build"
 
 [project]
-name = "cv-toolkit"
+name = "cv-roadmap"
 version = "0.1.0"
-description = "Production-ready classic computer vision toolkit (package + CLI + tests + docs + CI)."
+description = "Classic computer vision roadmap."
 readme = "README.md"
 requires-python = ">=3.10"
 license = {file = "LICENSE"}
-authors = [{name = "Your Name"}]
+authors = [{name = "Sara Hatami"}]
 dependencies = [
   "opencv-python>=4.9.0.80",
   "numpy>=1.26",
@@ -19,7 +19,7 @@ dependencies = [
 ]
 
 [project.urls]
-Homepage = "https://github.com/yourname/cv-toolkit"
+Homepage = "https://github.com/saravich/cv-roadmap"
 
 [project.scripts]
 cvtk = "cv_toolkit.cli:app"
