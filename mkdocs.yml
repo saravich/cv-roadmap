@@ -1,0 +1,20 @@
+site_name: CV Toolkit
+theme:
+  name: material
+  features:
+    - navigation.sections
+    - content.code.copy
+nav:
+  - Home: index.md
+  - Usage:
+      - CLI: usage/cli.md
+      - Python API: usage/python.md
+  - Modules:
+      - Filters: modules/filters.md
+      - Features: modules/features.md
+      - Geometry: modules/geometry.md
+      - Calibration: modules/calibration.md
+      - Optical Flow: modules/optical_flow.md
+      - Segmentation: modules/segmentation.md
+      - Tracking: modules/tracking.md
+  - Contributing: contributing.md

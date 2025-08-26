@@ -1,0 +1,55 @@
+[build-system]
+requires = ["hatchling>=1.18"]
+build-backend = "hatchling.build"
+
+[project]
+name = "cv-toolkit"
+version = "0.1.0"
+description = "Production-ready classic computer vision toolkit (package + CLI + tests + docs + CI)."
+readme = "README.md"
+requires-python = ">=3.10"
+license = {file = "LICENSE"}
+authors = [{name = "Your Name"}]
+dependencies = [
+  "opencv-python>=4.9.0.80",
+  "numpy>=1.26",
+  "typer>=0.12",
+  "rich>=13.7",
+  "pillow>=10.3",
+]
+
+[project.urls]
+Homepage = "https://github.com/yourname/cv-toolkit"
+
+[project.scripts]
+cvtk = "cv_toolkit.cli:app"
+
+[project.optional-dependencies]
+dev = [
+  "pytest>=8.0",
+  "pytest-cov>=5.0",
+  "mypy>=1.10",
+  "ruff>=0.5.0",
+  "black>=24.4",
+  "mkdocs>=1.6",
+  "mkdocs-material>=9.5",
+]
+
+[tool.black]
+line-length = 100
+target-version = ["py311"]
+
+[tool.ruff]
+line-length = 100
+select = ["E","F","I","UP","B","BLE","C4","SIM","I"]
+ignore = ["E501"]
+
+[tool.mypy]
+strict = true
+warn_unused_ignores = true
+warn_redundant_casts = true
+exclude = ["docs/"]
+
+[tool.pytest.ini_options]
+addopts = "-q --cov=cv_toolkit --cov-report=term-missing"
+pythonpath = ["src"]

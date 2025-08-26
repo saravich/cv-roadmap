@@ -1,0 +1,13 @@
+{
+  "name": "CV Toolkit",
+  "image": "mcr.microsoft.com/devcontainers/python:3.11",
+  "features": {
+    "ghcr.io/devcontainers/features/common-utils:2": {}
+  },
+  "postCreateCommand": "pip install -e '.[dev]' && pre-commit install",
+  "customizations": {
+    "vscode": {
+      "extensions": ["ms-python.python", "ms-python.vscode-pylance", "ms-azuretools.vscode-docker", "charliermarsh.ruff"]
+    }
+  }
+}
