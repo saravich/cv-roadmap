@@ -49,6 +49,9 @@ line-length = 100
 select = ["E","F","I","UP","B","BLE","C4","SIM","I"]
 ignore = ["E501"]
 
+[tool.ruff.lint.isort]
+known-first-party = ["iptk"]
+
 [tool.mypy]
 strict = true
 warn_unused_ignores = true
